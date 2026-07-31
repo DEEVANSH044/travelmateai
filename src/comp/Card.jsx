@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 
 
 function Card(props) {
@@ -7,7 +7,7 @@ function Card(props) {
         <img src={props.img} alt={props.name} className="rounded-lg"/>
           <h2 className="text-2xl font-bold mt-3">{props.name}</h2>
           <p className="text-gray-600 mt-2">{props.state}</p>
-          <button className="mt-4 bg-sky-600 text-white px-6 py-2 rounded-lg">Explore</button>
+          <Link to={`/destination/${props.name.toLowerCase()}`}className="inline-block mt-4 bg-sky-600 text-white px-6 py-2 rounded-lg hover:bg-sky-700">Explore</Link>
     </div>
   )
 }
