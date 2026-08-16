@@ -3,7 +3,17 @@ const Places = [
     id: 1,
     name: "Manali",
     state: "Himachal Pradesh",
-    img: "https://picsum.photos/300/200?1",
+    images: [
+
+  "https://picsum.photos/500/300?manali1",
+
+  "https://picsum.photos/500/300?manali2",
+
+  "https://picsum.photos/500/300?manali3",
+
+  "https://picsum.photos/500/300?manali4"
+
+],
     rating: 4.8,
     weather: "15°C",
     budget: "₹15,000",
@@ -25,7 +35,12 @@ const Places = [
     id: 2,
     name: "Goa",
     state: "Goa",
-    img: "https://picsum.photos/300/200?2",
+    images: [
+  "https://picsum.photos/500/300?goa1",
+  "https://picsum.photos/500/300?goa2",
+  "https://picsum.photos/500/300?goa3",
+  "https://picsum.photos/500/300?goa4"
+],
     rating: 4.7,
     weather: "30°C",
     budget: "₹18,000",
@@ -47,7 +62,12 @@ const Places = [
     id: 3,
     name: "Jaipur",
     state: "Rajasthan",
-    img: "https://picsum.photos/300/200?3",
+    images: [
+  "https://picsum.photos/500/300?jaipur1",
+  "https://picsum.photos/500/300?jaipur2",
+  "https://picsum.photos/500/300?jaipur3",
+  "https://picsum.photos/500/300?jaipur4"
+],
     rating: 4.6,
     weather: "32°C",
     budget: "₹12,000",

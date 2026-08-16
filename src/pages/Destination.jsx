@@ -18,6 +18,28 @@ function Destination() {
         className="w-full h-96 object-cover rounded-xl"
       />
 
+      {/* Image Gallery */}
+      <div className="mt-10">
+
+        <h2 className="text-3xl font-bold mb-5">
+          📸 Destination Gallery
+        </h2>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+
+          {place.images.map((image, index) => (
+            <img
+              key={index}
+              src={image}
+              alt={`${place.name} ${index + 1}`}
+              className="w-full h-48 object-cover rounded-xl shadow-lg"
+            />
+          ))}
+
+        </div>
+
+      </div>
+
       {/* Destination Info */}
       <div className="mt-8">
 
