@@ -1,30 +1,31 @@
 import { Link } from "react-router-dom";
 
 function Card({ name, state, img, images, rating, weather, budget }) {
-  // Use destination image or fallback to local destination hero
   const slug = name.toLowerCase().replace(/\s+/g, "-");
   const imageUrl = img || (images && images.length > 0 ? images[0] : `/images/destinations/${slug}/hero.jpg`);
 
   return (
-    <div className="group w-80 bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100">
+    <div className="group w-full max-w-[320px] sm:max-w-none bg-white dark:bg-[#0F0F0F] rounded-2xl overflow-hidden border border-slate-200 dark:border-[#262626] hover:border-slate-300 dark:hover:border-[#383838] hover:bg-slate-50/50 dark:hover:bg-[#151515] transition-all duration-300 flex flex-col shadow-xs hover:shadow-md">
       {/* Image Section */}
-      <div className="relative h-48 w-full overflow-hidden bg-slate-100">
+      <div className="relative h-48 w-full overflow-hidden bg-slate-100 dark:bg-[#0A0A0A]">
         <img
           src={imageUrl}
           alt={name}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
         />
-        {/* Rating Badge */}
+
+        {/* Adaptive subtle rating badge */}
         {rating && (
-          <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-xs px-2.5 py-1 rounded-lg text-sm font-bold text-slate-800 flex items-center gap-1 shadow-sm">
-            <span>⭐</span>
+          <div className="absolute top-3 right-3 bg-white/90 dark:bg-[#050505]/85 backdrop-blur-xs border border-slate-200 dark:border-[#262626] px-2.5 py-1 rounded-lg text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5 shadow-sm">
+            <span className="text-amber-500 dark:text-amber-400">★</span>
             <span>{rating}</span>
           </div>
         )}
-        {/* Weather Badge */}
+
+        {/* Adaptive subtle weather badge */}
         {weather && (
-          <div className="absolute bottom-3 left-3 bg-slate-900/70 backdrop-blur-xs px-2.5 py-1 rounded-lg text-xs font-semibold text-white flex items-center gap-1">
+          <div className="absolute bottom-3 left-3 bg-slate-900/80 dark:bg-[#050505]/85 backdrop-blur-xs border border-slate-700/50 dark:border-[#262626] px-2.5 py-1 rounded-lg text-[11px] font-semibold text-white dark:text-[#9CA3AF] flex items-center gap-1">
             <span>🌦️</span>
             <span>{weather}</span>
           </div>
@@ -34,23 +35,25 @@ function Card({ name, state, img, images, rating, weather, budget }) {
       {/* Content Section */}
       <div className="p-5 flex-1 flex flex-col justify-between">
         <div>
-          <span className="text-xs font-bold text-sky-600 tracking-wider uppercase">
+          <span className="text-[11px] font-bold text-sky-600 dark:text-sky-400 tracking-wider uppercase">
             {state}
           </span>
-          <h3 className="text-xl font-bold text-slate-850 mt-1 group-hover:text-sky-600 transition-colors duration-200">
+          <h3 className="text-lg font-bold text-slate-900 dark:text-white mt-1 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors duration-200">
             {name}
           </h3>
         </div>
 
-        <div className="mt-4 pt-4 border-t border-gray-50 flex items-center justify-between">
+        <div className="mt-5 pt-4 border-t border-slate-100 dark:border-[#1F1F1F] flex items-center justify-between">
           <div>
-            <span className="text-xs text-gray-400 block font-medium">Est. Budget</span>
-            <span className="text-sm font-bold text-emerald-600">{budget || "N/A"}</span>
+            <span className="text-[10px] text-slate-500 dark:text-[#6B7280] block font-medium uppercase tracking-wide">
+              Est. Budget
+            </span>
+            <span className="text-xs font-bold text-slate-900 dark:text-white">{budget || "N/A"}</span>
           </div>
 
           <Link
             to={`/destination/${name.toLowerCase()}`}
-            className="bg-sky-50 text-sky-600 hover:bg-sky-600 hover:text-white px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200"
+            className="bg-slate-100 dark:bg-[#141414] hover:bg-sky-600 dark:hover:bg-sky-500 hover:text-white dark:hover:text-slate-950 text-slate-800 dark:text-white border border-slate-200 dark:border-[#262626] px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200"
           >
             Explore →
           </Link>

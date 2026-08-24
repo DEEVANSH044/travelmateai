@@ -1,56 +1,47 @@
-function ReviewCard({ author, rating, date, comment, tag, index }) {
-  // Colorful gradients for avatar fallbacks
-  const gradients = [
-    "from-pink-500 to-rose-500",
-    "from-purple-500 to-indigo-500",
-    "from-blue-500 to-cyan-500",
-    "from-teal-500 to-emerald-500",
-    "from-amber-500 to-orange-500"
-  ];
-  const gradient = gradients[(index || 0) % gradients.length];
+function ReviewCard({ author, rating, date, comment, tag }) {
   const initials = author
     ? author.split(" ").map(n => n[0]).join("").toUpperCase().slice(0, 2)
     : "TR";
 
   return (
-    <div className="bg-slate-50 rounded-2xl p-5 border border-gray-100 hover:border-gray-200 transition-all duration-200 flex flex-col justify-between">
+    <div className="bg-white dark:bg-[#0F0F0F] rounded-2xl p-5 border border-slate-200 dark:border-[#262626] hover:border-slate-300 dark:hover:border-[#383838] hover:bg-slate-50/50 dark:hover:bg-[#151515] transition-all duration-200 flex flex-col justify-between shadow-xs">
       <div>
         {/* Header */}
         <div className="flex items-center gap-3">
-          <div className={`w-10 h-10 rounded-full bg-gradient-to-tr ${gradient} flex items-center justify-center text-white text-sm font-bold shadow-xs`}>
+          <div className="w-9 h-9 rounded-full bg-slate-100 dark:bg-[#141414] border border-slate-200 dark:border-[#262626] flex items-center justify-center text-sky-600 dark:text-sky-400 text-xs font-bold shadow-xs">
             {initials}
           </div>
           <div>
-            <h4 className="text-sm font-bold text-slate-800">{author}</h4>
-            <span className="text-[11px] text-gray-400 block">{date}</span>
+            <h4 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">{author}</h4>
+            <span className="text-[10px] text-slate-500 dark:text-[#6B7280] block">{date}</span>
           </div>
         </div>
 
         {/* Rating and Tag */}
-        <div className="flex items-center gap-2 mt-3.5">
-          <div className="flex text-yellow-500 text-xs gap-0.5">
+        <div className="flex items-center gap-2 mt-3">
+          <div className="flex text-amber-500 dark:text-amber-400 text-xs gap-0.5">
             {Array.from({ length: 5 }).map((_, i) => (
               <span key={i}>{i < Math.floor(rating) ? "★" : "☆"}</span>
             ))}
           </div>
           {tag && (
-            <span className="text-[10px] bg-sky-50 text-sky-600 font-semibold px-2 py-0.5 rounded-full">
+            <span className="text-[10px] bg-sky-50 dark:bg-[#141414] text-sky-700 dark:text-sky-400 font-semibold px-2 py-0.5 rounded-full border border-sky-200 dark:border-[#262626]">
               {tag}
             </span>
           )}
         </div>
 
         {/* Comment */}
-        <p className="text-xs text-gray-600 mt-3.5 leading-relaxed italic">
+        <p className="text-xs text-slate-600 dark:text-[#9CA3AF] mt-3 leading-relaxed italic">
           "{comment}"
         </p>
       </div>
 
-      <div className="mt-4 pt-3 border-t border-slate-100/50 flex items-center justify-between text-[11px] text-gray-400">
-        <span className="flex items-center gap-1">
-          <span>✓</span> Verified Reviewer
+      <div className="mt-4 pt-3 border-t border-slate-100 dark:border-[#1F1F1F] flex items-center justify-between text-[11px] text-slate-500 dark:text-[#6B7280]">
+        <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-medium">
+          <span>✓</span> Verified Traveler
         </span>
-        <button className="hover:text-sky-600 font-semibold transition-colors duration-150">
+        <button className="hover:text-slate-900 dark:hover:text-white font-medium transition-colors cursor-pointer">
           Helpful? (12)
         </button>
       </div>

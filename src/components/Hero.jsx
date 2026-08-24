@@ -8,77 +8,92 @@ function Hero() {
   const handleSearch = (e) => {
     e.preventDefault();
     if (!query.trim()) return;
-    // Navigate to Destinations with search query in state or query param
     navigate(`/destinations?search=${encodeURIComponent(query.trim())}`);
   };
 
+  const categories = [
+    { label: "Mountains", icon: "🏔️", search: "Manali" },
+    { label: "Beaches", icon: "🏖️", search: "Goa" },
+    { label: "Heritage", icon: "🕌", search: "Jaipur" },
+    { label: "Nature", icon: "🌿", search: "Munnar" },
+    { label: "Adventure", icon: "🧗", search: "Rishikesh" }
+  ];
+
   return (
-    <section className="relative overflow-hidden bg-gradient-to-tr from-sky-50 via-slate-50 to-indigo-50 py-28 md:py-36 flex flex-col items-center justify-center border-b border-gray-100">
-      {/* Decorative Blob */}
-      <div className="absolute top-1/4 left-1/4 -translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-sky-200/40 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 translate-y-1/2 translate-x-1/2 w-96 h-96 bg-indigo-200/30 rounded-full blur-3xl pointer-events-none" />
+    <section className="relative w-full overflow-hidden min-h-[550px] md:min-h-[650px] flex items-center justify-center border-b border-slate-200 dark:border-[#1F1F1F]">
+      {/* Background Image: Full-width realistic mountain valley image */}
+      <div
+        className="absolute inset-0 z-0 bg-cover bg-center transition-all duration-300"
+        style={{
+          backgroundImage: "url('/images/hero/image.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center"
+        }}
+      >
+        {/* Subtle Dark Overlay (rgba(0, 0, 0, 0.30)) */}
+        <div
+          className="absolute inset-0"
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.30)" }}
+        />
 
-      <div className="relative z-10 max-w-4xl text-center px-6">
-        <span className="inline-flex items-center gap-1.5 bg-sky-50 border border-sky-100 text-sky-600 px-3 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase mb-6 animate-pulse">
-          ✨ Your personal AI Travel Companion
-        </span>
+        {/* Bottom subtle gradient blend into page background */}
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-50 dark:from-[#050505] to-transparent opacity-90" />
+      </div>
 
-        <h1 className="text-4xl md:text-6xl font-extrabold text-slate-850 tracking-tight leading-tight md:leading-none">
-          Discover Your Next <br />
-          <span className="bg-gradient-to-r from-sky-600 to-indigo-600 bg-clip-text text-transparent">
-            Dream Adventure
-          </span>
+      {/* Content over background */}
+      <div className="relative z-10 max-w-4xl text-center px-6 py-14 md:py-20 flex flex-col items-center">
+        {/* Subtle Badge */}
+        <div className="inline-flex items-center gap-2 bg-black/40 hover:bg-black/50 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full text-xs font-semibold text-white mb-6 shadow-lg transition-colors">
+          <span className="text-sky-400">✨</span>
+          <span>Next-Generation Travel Platform</span>
+        </div>
+
+        {/* Headline */}
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-tight md:leading-tight drop-shadow-md">
+          Explore India. <br />
+          <span className="text-sky-400">Travel Smarter.</span>
         </h1>
 
-        <p className="mt-6 text-base md:text-lg text-gray-505 max-w-2xl mx-auto leading-relaxed">
-          Plan trips, discover hotels, explore local culinary arts, and build custom multi-day plans matching your mood.
+        {/* Supporting text */}
+        <p className="mt-4 sm:mt-5 text-sm sm:text-base text-white/90 max-w-2xl mx-auto leading-relaxed drop-shadow-xs font-medium">
+          Discover destinations, build personalized itineraries, and find experiences made for you.
         </p>
 
         {/* Search Input Container */}
         <form
           onSubmit={handleSearch}
-          className="mt-10 max-w-xl mx-auto flex flex-col sm:flex-row gap-3 bg-white p-2 rounded-2xl shadow-md border border-gray-100/60"
+          className="mt-8 sm:mt-9 w-full max-w-xl flex flex-col sm:flex-row gap-2 bg-white/95 dark:bg-black/60 backdrop-blur-md p-2 rounded-2xl border border-white/30 dark:border-white/20 shadow-2xl focus-within:border-sky-400 transition-all"
         >
-          <div className="flex-1 flex items-center px-3">
-            <span className="text-gray-400 text-lg mr-2">🔍</span>
+          <div className="flex-1 flex items-center px-3.5">
+            <span className="text-sky-600 dark:text-sky-400 text-base mr-2.5">🔍</span>
             <input
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Where do you want to go? (e.g. Manali, Goa...)"
-              className="w-full py-3 bg-transparent text-slate-850 font-medium placeholder-gray-400 outline-none text-sm"
+              placeholder="Search destinations (e.g. Manali, Goa, Jaipur)..."
+              className="w-full py-2.5 bg-transparent text-slate-900 dark:text-white font-semibold placeholder-slate-500 dark:placeholder-slate-300 outline-none text-xs sm:text-sm"
             />
           </div>
           <button
             type="submit"
-            className="px-7 py-3 bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-700 hover:to-indigo-700 text-white rounded-xl font-bold shadow-sm transition-all duration-200"
+            className="px-6 py-3 bg-sky-600 hover:bg-sky-500 dark:bg-sky-500 dark:hover:bg-sky-400 text-white dark:text-slate-950 font-bold rounded-xl text-xs sm:text-sm shadow-md transition-all duration-200 cursor-pointer"
           >
             Search
           </button>
         </form>
 
-        <div className="mt-8 flex flex-wrap justify-center gap-3 text-xs text-slate-500 font-medium">
-          <span>Popular:</span>
-          <button
-            onClick={() => navigate("/destination/manali")}
-            className="hover:text-sky-600 underline"
-          >
-            Manali
-          </button>
-          <span>•</span>
-          <button
-            onClick={() => navigate("/destination/goa")}
-            className="hover:text-sky-600 underline"
-          >
-            Goa
-          </button>
-          <span>•</span>
-          <button
-            onClick={() => navigate("/destination/jaipur")}
-            className="hover:text-sky-600 underline"
-          >
-            Jaipur
-          </button>
+        {/* Quick Categories with translucent backdrop blur */}
+        <div className="mt-8 sm:mt-10 flex flex-wrap justify-center gap-2.5 sm:gap-3">
+          {categories.map((cat) => (
+            <button
+              key={cat.label}
+              onClick={() => navigate(`/destinations?search=${encodeURIComponent(cat.label)}`)}
+              className="flex items-center gap-2 bg-black/40 hover:bg-black/60 backdrop-blur-md text-white border border-white/20 hover:border-white/40 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer shadow-md hover:scale-105"
+            >
+              <span>{cat.icon}</span>
+              <span>{cat.label}</span>
+            </button>
+          ))}
         </div>
       </div>
     </section>

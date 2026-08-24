@@ -1,10 +1,11 @@
 import Nav from "../components/Nav";
 import Hero from "../components/Hero";
 import Popular from "../components/Popular";
+import Footer from "../components/Footer";
 
 function Home() {
   return (
-    <div className="bg-slate-50 min-h-screen text-slate-800">
+    <div className="bg-slate-50 dark:bg-[#050505] min-h-screen text-slate-900 dark:text-white flex flex-col transition-colors duration-300">
       {/* Navigation */}
       <Nav />
 
@@ -12,56 +13,56 @@ function Home() {
       <Hero />
 
       {/* Popular Destinations section */}
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6 w-full flex-1">
         <Popular />
       </div>
 
       {/* Premium Features Section */}
-      <section className="py-20 bg-white border-t border-slate-100">
+      <section className="py-20 bg-white dark:bg-[#0A0A0A] border-t border-slate-200 dark:border-[#1F1F1F] transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-sm font-bold text-sky-600 tracking-wider uppercase">
-              Our Features
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <span className="text-xs font-bold text-sky-600 dark:text-sky-400 tracking-wider uppercase">
+              Platform Features
             </span>
-            <h2 className="text-4xl font-extrabold text-slate-850 mt-2">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-2 tracking-tight">
               Why Choose TravelMate AI?
             </h2>
-            <p className="text-gray-500 mt-4 text-lg">
-              We leverage advanced AI technology to craft travel itineraries and match you with absolute perfection.
+            <p className="text-slate-600 dark:text-[#9CA3AF] mt-3 text-xs sm:text-sm leading-relaxed">
+              We leverage intelligent planning to craft tailor-made travel itineraries and match you with absolute perfection.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {/* Feature 1 */}
-            <div className="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-md transition-all duration-300">
-              <div className="w-12 h-12 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center text-2xl font-bold mb-6">
+            <div className="bg-slate-50 dark:bg-[#0F0F0F] p-8 rounded-2xl border border-slate-200 dark:border-[#262626] hover:border-slate-300 dark:hover:border-[#383838] hover:bg-slate-100/60 dark:hover:bg-[#151515] transition-all duration-300 shadow-xs">
+              <div className="w-12 h-12 rounded-xl bg-slate-200/70 dark:bg-[#141414] border border-slate-300/60 dark:border-[#262626] text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl font-bold mb-6">
                 🤖
               </div>
-              <h3 className="text-xl font-bold text-slate-850">AI Smart Planner</h3>
-              <p className="text-gray-500 mt-3 text-sm leading-relaxed">
-                Generate custom multi-day plans matching your mood, companion, and budget constraint instantly.
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white">AI Smart Planner</h3>
+              <p className="text-slate-600 dark:text-[#9CA3AF] mt-2.5 text-xs sm:text-sm leading-relaxed">
+                Generate custom multi-day plans matching your mood, companion, and budget constraints instantly.
               </p>
             </div>
 
             {/* Feature 2 */}
-            <div className="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-md transition-all duration-300">
-              <div className="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-2xl font-bold mb-6">
+            <div className="bg-slate-50 dark:bg-[#0F0F0F] p-8 rounded-2xl border border-slate-200 dark:border-[#262626] hover:border-slate-300 dark:hover:border-[#383838] hover:bg-slate-100/60 dark:hover:bg-[#151515] transition-all duration-300 shadow-xs">
+              <div className="w-12 h-12 rounded-xl bg-slate-200/70 dark:bg-[#141414] border border-slate-300/60 dark:border-[#262626] text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl font-bold mb-6">
                 🏨
               </div>
-              <h3 className="text-xl font-bold text-slate-850">Curated Local Stays</h3>
-              <p className="text-gray-500 mt-3 text-sm leading-relaxed">
-                Direct connections and handpicked hotel recommendations that offer maximum comfort and ratings.
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white">Curated Local Stays</h3>
+              <p className="text-slate-600 dark:text-[#9CA3AF] mt-2.5 text-xs sm:text-sm leading-relaxed">
+                Handpicked hotel recommendations and verified stays that offer maximum comfort, safety, and ratings.
               </p>
             </div>
 
             {/* Feature 3 */}
-            <div className="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-md transition-all duration-300">
-              <div className="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl font-bold mb-6">
+            <div className="bg-slate-50 dark:bg-[#0F0F0F] p-8 rounded-2xl border border-slate-200 dark:border-[#262626] hover:border-slate-300 dark:hover:border-[#383838] hover:bg-slate-100/60 dark:hover:bg-[#151515] transition-all duration-300 shadow-xs">
+              <div className="w-12 h-12 rounded-xl bg-slate-200/70 dark:bg-[#141414] border border-slate-300/60 dark:border-[#262626] text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl font-bold mb-6">
                 🍛
               </div>
-              <h3 className="text-xl font-bold text-slate-850">Local Cuisine Insights</h3>
-              <p className="text-gray-500 mt-3 text-sm leading-relaxed">
-                Never miss out on local delicacies. Find where to get authentic cultural foods during your stay.
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white">Local Cuisine Insights</h3>
+              <p className="text-slate-600 dark:text-[#9CA3AF] mt-2.5 text-xs sm:text-sm leading-relaxed">
+                Never miss out on regional delicacies. Discover where to find authentic cultural dishes during your stay.
               </p>
             </div>
           </div>
@@ -69,17 +70,7 @@ function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-2">
-            <span className="text-xl">✈️</span>
-            <span className="text-lg font-bold text-white">TravelMate AI</span>
-          </div>
-          <p className="text-sm">
-            © {new Date().getFullYear()} TravelMate AI. All rights reserved. Made for premium traveling.
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

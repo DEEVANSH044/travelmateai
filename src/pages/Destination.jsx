@@ -5,6 +5,7 @@ import Gallery from "../components/Gallery";
 import HotelCard from "../components/HotelCard";
 import FoodCard from "../components/FoodCard";
 import ReviewCard from "../components/ReviewCard";
+import Footer from "../components/Footer";
 
 function Destination() {
   const { name } = useParams();
@@ -17,21 +18,22 @@ function Destination() {
 
   if (!place) {
     return (
-      <div className="bg-slate-50 min-h-screen text-slate-800 flex flex-col">
+      <div className="bg-slate-50 dark:bg-[#050505] min-h-screen text-slate-900 dark:text-white flex flex-col transition-colors duration-300">
         <Nav />
         <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
           <span className="text-5xl">🏝️</span>
-          <h2 className="text-2xl font-bold mt-4">Destination Not Found</h2>
-          <p className="text-gray-500 mt-2">
+          <h2 className="text-2xl font-bold mt-4 text-slate-900 dark:text-white">Destination Not Found</h2>
+          <p className="text-slate-600 dark:text-[#9CA3AF] mt-2 text-sm">
             The destination "{name}" could not be found in our directory.
           </p>
           <Link
             to="/destinations"
-            className="mt-6 bg-sky-600 text-white px-5 py-2.5 rounded-xl font-bold hover:bg-sky-700 transition-colors"
+            className="mt-6 bg-sky-600 hover:bg-sky-500 dark:bg-sky-500 dark:hover:bg-sky-400 text-white dark:text-slate-950 px-5 py-2.5 rounded-xl font-bold text-xs transition-colors"
           >
             ← Back to Explore
           </Link>
         </div>
+        <Footer />
       </div>
     );
   }
@@ -52,87 +54,83 @@ function Destination() {
   const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
 
   return (
-    <div className="bg-slate-50 min-h-screen text-slate-850 pb-20">
+    <div className="bg-slate-50 dark:bg-[#050505] min-h-screen text-slate-900 dark:text-white flex flex-col transition-colors duration-300">
       <Nav />
 
       {/* Hero Banner with local hero image */}
-      <div className="relative h-[460px] w-full overflow-hidden">
+      <div className="relative h-[480px] w-full overflow-hidden bg-slate-900">
         <img
           src={place.img || place.images?.[0]}
           alt={place.name}
           className="w-full h-full object-cover"
         />
-        {/* Dark overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-black/20" />
+        {/* Dark overlay gradient for hero text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/25" />
 
         {/* Hero Meta Info */}
         <div className="absolute bottom-10 left-0 right-0 max-w-6xl mx-auto px-6 text-white">
           <Link
             to="/destinations"
-            className="inline-flex items-center gap-1.5 text-white/80 hover:text-white text-sm font-semibold mb-4 transition-colors"
+            className="inline-flex items-center gap-1.5 text-white/80 hover:text-white text-xs font-semibold mb-4 transition-colors"
           >
-            ← Back to All 50 Destinations
+            ← Back to All Destinations
           </Link>
 
-          <span className="text-xs bg-sky-500 text-white font-bold px-3 py-1 rounded-full uppercase tracking-wider block w-max">
+          <span className="text-[11px] bg-black/60 backdrop-blur-xs border border-white/20 text-sky-400 font-bold px-3 py-1 rounded-full uppercase tracking-wider block w-max">
             {place.state}
           </span>
-          <h1 className="text-4xl md:text-6xl font-extrabold mt-3 tracking-tight">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold mt-3 tracking-tight text-white">
             {place.name}
           </h1>
 
-          <div className="flex flex-wrap items-center gap-6 mt-4 text-sm font-medium text-white/90">
-            <span className="flex items-center gap-1.5">
-              ⭐ <strong className="text-white">{place.rating}</strong> Rating
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6 mt-4 text-xs font-medium text-white/90">
+            <span className="flex items-center gap-1.5 bg-black/50 backdrop-blur-xs border border-white/15 px-3 py-1 rounded-lg">
+              <span className="text-amber-400">★</span> <strong className="text-white">{place.rating}</strong> Rating
             </span>
-            <span>•</span>
-            <span className="flex items-center gap-1.5">
+            <span className="flex items-center gap-1.5 bg-black/50 backdrop-blur-xs border border-white/15 px-3 py-1 rounded-lg">
               🌦️ Weather: <strong className="text-white">{place.weather}</strong>
             </span>
-            <span>•</span>
-            <span className="flex items-center gap-1.5">
+            <span className="flex items-center gap-1.5 bg-black/50 backdrop-blur-xs border border-white/15 px-3 py-1 rounded-lg">
               💰 Est. Budget: <strong className="text-white">{place.budget}</strong>
             </span>
             {place.bestTime && (
-              <>
-                <span>•</span>
-                <span className="flex items-center gap-1.5">
-                  🗓️ Best Time: <strong className="text-white">{place.bestTime}</strong>
-                </span>
-              </>
+              <span className="flex items-center gap-1.5 bg-black/50 backdrop-blur-xs border border-white/15 px-3 py-1 rounded-lg">
+                🗓️ Best Time: <strong className="text-white">{place.bestTime}</strong>
+              </span>
             )}
           </div>
         </div>
       </div>
 
       {/* Main Grid */}
-      <main className="max-w-6xl mx-auto px-6 mt-12 grid grid-cols-1 lg:grid-cols-3 gap-10">
-        {/* Left Side: About, Attractions, Hidden Gems, Gallery, Hotels, Food, Map */}
+      <main className="max-w-6xl mx-auto px-6 mt-8 mb-20 grid grid-cols-1 lg:grid-cols-3 gap-10 flex-1 w-full">
+        {/* Left Side: About, Info Cards, Attractions, Hidden Gems, Gallery, Hotels, Food, Map */}
         <div className="lg:col-span-2 space-y-12">
           {/* About Section */}
-          <section className="bg-white p-8 rounded-3xl border border-gray-100 shadow-xs">
-            <h2 className="text-2xl font-bold text-slate-800 mb-4">
+          <section className="bg-white dark:bg-[#0F0F0F] p-8 rounded-3xl border border-slate-200 dark:border-[#262626] shadow-xs">
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-3">
               About {place.name}
             </h2>
-            <p className="text-gray-600 leading-relaxed text-base">
+            <p className="text-slate-600 dark:text-[#9CA3AF] leading-relaxed text-xs sm:text-sm">
               {place.description}
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
-              <div className="bg-sky-50/50 p-5 rounded-2xl border border-sky-100/50">
-                <span className="text-2xl">🌦️</span>
-                <h4 className="text-xs font-bold text-slate-500 uppercase mt-2">Avg Weather</h4>
-                <p className="text-lg font-extrabold text-sky-600 mt-1">{place.weather}</p>
+            {/* Quick Information Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-7">
+              <div className="bg-slate-50 dark:bg-[#141414] p-5 rounded-2xl border border-slate-200 dark:border-[#262626]">
+                <span className="text-xl">🌦️</span>
+                <h4 className="text-[10px] font-bold text-slate-500 dark:text-[#6B7280] uppercase mt-2">Avg Weather</h4>
+                <p className="text-base font-extrabold text-slate-900 dark:text-white mt-1">{place.weather}</p>
               </div>
-              <div className="bg-emerald-50/50 p-5 rounded-2xl border border-emerald-100/50">
-                <span className="text-2xl">💰</span>
-                <h4 className="text-xs font-bold text-slate-500 uppercase mt-2">Est. Budget</h4>
-                <p className="text-lg font-extrabold text-emerald-600 mt-1">{place.budget}</p>
+              <div className="bg-slate-50 dark:bg-[#141414] p-5 rounded-2xl border border-slate-200 dark:border-[#262626]">
+                <span className="text-xl">💰</span>
+                <h4 className="text-[10px] font-bold text-slate-500 dark:text-[#6B7280] uppercase mt-2">Est. Budget</h4>
+                <p className="text-base font-extrabold text-slate-900 dark:text-white mt-1">{place.budget}</p>
               </div>
-              <div className="bg-purple-50/50 p-5 rounded-2xl border border-purple-100/50">
-                <span className="text-2xl">🗓️</span>
-                <h4 className="text-xs font-bold text-slate-500 uppercase mt-2">Best Season</h4>
-                <p className="text-sm font-extrabold text-purple-600 mt-1.5">{place.bestTime || "Year Round"}</p>
+              <div className="bg-slate-50 dark:bg-[#141414] p-5 rounded-2xl border border-slate-200 dark:border-[#262626]">
+                <span className="text-xl">🗓️</span>
+                <h4 className="text-[10px] font-bold text-slate-500 dark:text-[#6B7280] uppercase mt-2">Best Season</h4>
+                <p className="text-xs font-extrabold text-slate-900 dark:text-white mt-1.5">{place.bestTime || "Year Round"}</p>
               </div>
             </div>
           </section>
@@ -141,15 +139,15 @@ function Destination() {
           <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Top Attractions */}
             {place.attractions && place.attractions.length > 0 && (
-              <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-xs">
-                <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+              <div className="bg-white dark:bg-[#0F0F0F] p-6 rounded-3xl border border-slate-200 dark:border-[#262626] shadow-xs">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                   <span>🏛️</span> Top Attractions
                 </h3>
-                <ul className="space-y-2.5 text-sm font-semibold text-slate-700">
+                <ul className="space-y-2.5 text-xs font-semibold text-slate-700 dark:text-[#9CA3AF]">
                   {place.attractions.map((attr, idx) => (
-                    <li key={idx} className="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-                      <span className="text-sky-500 font-bold">•</span>
-                      <span>{attr}</span>
+                    <li key={idx} className="flex items-center gap-2 bg-slate-50 dark:bg-[#141414] p-2.5 rounded-xl border border-slate-200 dark:border-[#262626]">
+                      <span className="text-sky-600 dark:text-sky-400 font-bold">•</span>
+                      <span className="text-slate-900 dark:text-white">{attr}</span>
                     </li>
                   ))}
                 </ul>
@@ -158,15 +156,15 @@ function Destination() {
 
             {/* Hidden Gems */}
             {place.hiddenGems && place.hiddenGems.length > 0 && (
-              <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-xs">
-                <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+              <div className="bg-white dark:bg-[#0F0F0F] p-6 rounded-3xl border border-slate-200 dark:border-[#262626] shadow-xs">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                   <span>💎</span> Offbeat & Hidden Gems
                 </h3>
-                <ul className="space-y-2.5 text-sm font-semibold text-slate-700">
+                <ul className="space-y-2.5 text-xs font-semibold text-slate-700 dark:text-[#9CA3AF]">
                   {place.hiddenGems.map((gem, idx) => (
-                    <li key={idx} className="flex items-center gap-2 bg-amber-50/60 p-2.5 rounded-xl border border-amber-100/60">
-                      <span className="text-amber-500 font-bold">✨</span>
-                      <span>{gem}</span>
+                    <li key={idx} className="flex items-center gap-2 bg-slate-50 dark:bg-[#141414] p-2.5 rounded-xl border border-slate-200 dark:border-[#262626]">
+                      <span className="text-amber-500 dark:text-amber-400 font-bold">✨</span>
+                      <span className="text-slate-900 dark:text-white">{gem}</span>
                     </li>
                   ))}
                 </ul>
@@ -176,7 +174,7 @@ function Destination() {
 
           {/* Photo Gallery */}
           <section>
-            <h2 className="text-2xl font-bold text-slate-800 mb-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-5">
               📸 Real Destination Photographs
             </h2>
             <Gallery images={place.images} name={place.name} />
@@ -185,7 +183,7 @@ function Destination() {
           {/* Recommended Hotels */}
           {place.hotels && place.hotels.length > 0 && (
             <section>
-              <h2 className="text-2xl font-bold text-slate-800 mb-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-5">
                 🏨 Recommended Places to Stay
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -199,7 +197,7 @@ function Destination() {
           {/* Famous Food */}
           {place.food && place.food.length > 0 && (
             <section>
-              <h2 className="text-2xl font-bold text-slate-800 mb-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-5">
                 🍛 Local Culinary Delights
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -211,30 +209,31 @@ function Destination() {
           )}
 
           {/* Interactive Map Section */}
-          <section className="bg-white p-6 rounded-3xl border border-gray-100 shadow-xs overflow-hidden">
+          <section className="bg-white dark:bg-[#0F0F0F] p-6 rounded-3xl border border-slate-200 dark:border-[#262626] overflow-hidden shadow-xs">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
+                <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
                   <span>🗺️</span> Destination Map & Coordinates
                 </h2>
-                <p className="text-xs text-gray-400 mt-0.5">Explore {place.name}, {place.state} on the interactive map</p>
+                <p className="text-xs text-slate-500 dark:text-[#6B7280] mt-0.5">Explore {place.name}, {place.state} on the interactive map</p>
               </div>
               <a
                 href={googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-bold text-sky-600 bg-sky-50 px-3.5 py-1.5 rounded-xl hover:bg-sky-600 hover:text-white transition-colors"
+                className="text-xs font-bold text-white dark:text-slate-950 bg-sky-600 hover:bg-sky-500 dark:bg-sky-500 dark:hover:bg-sky-400 px-3.5 py-1.5 rounded-xl transition-colors cursor-pointer"
               >
                 Open in Maps ↗
               </a>
             </div>
 
-            <div className="w-full h-72 rounded-2xl overflow-hidden border border-slate-100 relative bg-slate-100">
+            <div className="w-full h-72 rounded-2xl overflow-hidden border border-slate-200 dark:border-[#262626] relative bg-slate-100 dark:bg-[#0A0A0A]">
               <iframe
                 title={`Map of ${place.name}`}
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
+                className="w-full h-full dark:[filter:invert(90%)_hue-rotate(180deg)]"
                 loading="lazy"
                 src={`https://maps.google.com/maps?q=${mapQuery}&t=&z=12&ie=UTF8&iwloc=&output=embed`}
               />
@@ -245,63 +244,62 @@ function Destination() {
         {/* Right Side: Planner CTA, Emergency Directory & Reviews Sidebar */}
         <div className="space-y-8">
           {/* Quick Book / Trip Planner Card */}
-          <div className="bg-gradient-to-tr from-sky-600 to-indigo-600 rounded-3xl p-8 text-white shadow-lg relative overflow-hidden">
-            <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full blur-2xl pointer-events-none" />
-            <h3 className="text-xl font-bold">Ready to travel to {place.name}?</h3>
-            <p className="text-white/80 text-xs mt-2 leading-relaxed">
-              Use our AI-driven itinerary builder to customize a day-by-day plan matching your mood, season, and budget!
+          <div className="bg-white dark:bg-[#0F0F0F] rounded-3xl p-7 border border-slate-200 dark:border-[#262626] relative overflow-hidden shadow-xs">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white">Ready to visit {place.name}?</h3>
+            <p className="text-slate-600 dark:text-[#9CA3AF] text-xs mt-2 leading-relaxed">
+              Use our AI-driven itinerary builder to customize a day-by-day roadmap matching your mood, season, and budget.
             </p>
             <Link
               to={`/planner?destination=${encodeURIComponent(place.name)}`}
-              className="mt-6 w-full text-center inline-block bg-white text-sky-600 font-bold py-3 rounded-2xl shadow-sm hover:shadow transition-all duration-200"
+              className="mt-6 w-full text-center inline-block bg-sky-600 hover:bg-sky-500 dark:bg-sky-500 dark:hover:bg-sky-400 text-white dark:text-slate-950 font-bold py-3 rounded-xl text-xs shadow-sm transition-all duration-200"
             >
               Build AI Itinerary
             </Link>
           </div>
 
           {/* Emergency & Tourist Safety Directory */}
-          <div className="bg-white p-6 rounded-3xl border border-rose-100 shadow-xs bg-gradient-to-b from-rose-50/40 to-white">
-            <div className="flex items-center gap-2 mb-4">
+          <div className="bg-white dark:bg-[#0F0F0F] p-6 rounded-3xl border border-slate-200 dark:border-[#262626] shadow-xs">
+            <div className="flex items-center gap-2 mb-3">
               <span className="text-xl">🚨</span>
-              <h3 className="text-lg font-bold text-slate-800">Emergency & Helplines</h3>
+              <h3 className="text-base font-bold text-slate-900 dark:text-white">Emergency & Helplines</h3>
             </div>
-            <p className="text-xs text-gray-500 mb-4 leading-relaxed">
+            <p className="text-xs text-slate-600 dark:text-[#9CA3AF] mb-4 leading-relaxed">
               Important 24x7 emergency contacts and local safety assistance for travelers visiting {place.name}.
             </p>
 
-            <div className="space-y-3 text-xs">
-              <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-100">
-                <span className="font-semibold text-slate-700">🌐 Tourist Helpline (Multilingual)</span>
-                <span className="font-bold text-sky-600">1363</span>
+            <div className="space-y-2.5 text-xs">
+              <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-[#141414] border border-slate-200 dark:border-[#262626]">
+                <span className="font-medium text-slate-700 dark:text-[#9CA3AF]">🌐 Tourist Helpline</span>
+                <span className="font-bold text-sky-600 dark:text-sky-400">1363</span>
               </div>
-              <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-100">
-                <span className="font-semibold text-slate-700">👮 Police Emergency (All India)</span>
-                <span className="font-bold text-indigo-600">112</span>
+              <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-[#141414] border border-slate-200 dark:border-[#262626]">
+                <span className="font-medium text-slate-700 dark:text-[#9CA3AF]">👮 Police Emergency</span>
+                <span className="font-bold text-slate-900 dark:text-white">112</span>
               </div>
-              <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-100">
-                <span className="font-semibold text-slate-700">🚑 Ambulance / Medical SOS</span>
-                <span className="font-bold text-rose-600">108 / 102</span>
+              <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-[#141414] border border-slate-200 dark:border-[#262626]">
+                <span className="font-medium text-slate-700 dark:text-[#9CA3AF]">🚑 Medical SOS</span>
+                <span className="font-bold text-red-600 dark:text-red-400">108 / 102</span>
               </div>
-              <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-100">
-                <span className="font-semibold text-slate-700">🚒 Fire Control</span>
-                <span className="font-bold text-amber-600">101</span>
+              <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-[#141414] border border-slate-200 dark:border-[#262626]">
+                <span className="font-medium text-slate-700 dark:text-[#9CA3AF]">🚒 Fire Control</span>
+                <span className="font-bold text-amber-600 dark:text-amber-400">101</span>
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-gray-100 text-[11px] text-gray-500">
-              📍 Local Assistance: Regional Tourist Information Centre, {place.state}
+            <div className="mt-4 pt-3 border-t border-slate-100 dark:border-[#1F1F1F] text-[11px] text-slate-500 dark:text-[#6B7280]">
+              📍 Regional Tourist Information Centre, {place.state}
             </div>
           </div>
 
           {/* Customer Reviews */}
-          <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-xs">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-lg font-bold text-slate-800">
+          <div className="bg-white dark:bg-[#0F0F0F] p-6 rounded-3xl border border-slate-200 dark:border-[#262626] shadow-xs">
+            <div className="flex items-center justify-between mb-5">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white">
                 Traveler Reviews ({reviewsToDisplay.length})
               </h3>
-              <span className="text-sm font-semibold text-sky-600">★ {place.rating}</span>
+              <span className="text-xs font-semibold text-amber-500 dark:text-amber-400">★ {place.rating}</span>
             </div>
-            <div className="space-y-5">
+            <div className="space-y-4">
               {reviewsToDisplay.map((review, index) => (
                 <ReviewCard
                   key={index}
@@ -310,13 +308,14 @@ function Destination() {
                   date={review.date}
                   comment={review.comment}
                   tag={review.tag}
-                  index={index}
                 />
               ))}
             </div>
           </div>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 }
