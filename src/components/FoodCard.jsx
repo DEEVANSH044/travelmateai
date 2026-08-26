@@ -21,7 +21,7 @@ function FoodCard({ name, index }) {
 
   return (
     <div className="bg-white dark:bg-[#0F0F0F] rounded-2xl overflow-hidden border border-slate-200 dark:border-[#262626] hover:border-slate-300 dark:hover:border-[#383838] hover:bg-slate-50/50 dark:hover:bg-[#151515] transition-all duration-300 flex flex-col h-full group shadow-xs">
-      {/* Image */}
+      
       <div className="relative h-40 w-full overflow-hidden bg-slate-100 dark:bg-[#0A0A0A]">
         <img
           src={imageUrl}
@@ -34,7 +34,7 @@ function FoodCard({ name, index }) {
         </div>
       </div>
 
-      {/* Content */}
+  
       <div className="p-5 flex-1 flex flex-col justify-between">
         <div>
           <h3 className="text-base font-bold text-slate-900 dark:text-white">{name}</h3>
@@ -42,7 +42,6 @@ function FoodCard({ name, index }) {
             Experience the authentic culinary heritage and flavor notes of this iconic regional preparation.
           </p>
 
-          {/* Tags */}
           <div className="flex flex-wrap gap-1.5 mt-3.5">
             {foodTags.map((tag, idx) => (
               <span
@@ -55,7 +54,7 @@ function FoodCard({ name, index }) {
           </div>
         </div>
 
-        {/* Action Button */}
+      
         <button
           onClick={handleFindPlaces}
           className="mt-5 w-full bg-slate-100 dark:bg-[#141414] hover:bg-sky-600 dark:hover:bg-sky-500 hover:text-white dark:hover:text-slate-950 text-slate-800 dark:text-white border border-slate-200 dark:border-[#262626] hover:border-transparent text-xs font-semibold py-2.5 rounded-xl transition-all duration-200 cursor-pointer"

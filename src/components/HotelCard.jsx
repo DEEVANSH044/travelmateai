@@ -2,8 +2,6 @@ import { useState } from "react";
 
 function HotelCard({ name, index }) {
   const [isBooked, setIsBooked] = useState(false);
-
-  // Generate realistic mock details based on index
   const ratings = [4.8, 4.7, 4.6, 4.9, 4.5][index % 5];
   const reviewsCount = [128, 94, 210, 85, 142][index % 5];
   const prices = ["₹4,500", "₹6,200", "₹8,500", "₹3,800", "₹7,000"][index % 5];
@@ -27,7 +25,7 @@ function HotelCard({ name, index }) {
 
   return (
     <div className="bg-white dark:bg-[#0F0F0F] rounded-2xl overflow-hidden border border-slate-200 dark:border-[#262626] hover:border-slate-300 dark:hover:border-[#383838] hover:bg-slate-50/50 dark:hover:bg-[#151515] transition-all duration-300 flex flex-col h-full shadow-xs">
-      {/* Image */}
+
       <div className="relative h-44 w-full overflow-hidden bg-slate-100 dark:bg-[#0A0A0A]">
         <img
           src={imageUrl}
@@ -40,19 +38,19 @@ function HotelCard({ name, index }) {
         </div>
       </div>
 
-      {/* Content */}
+    
       <div className="p-5 flex-1 flex flex-col justify-between">
         <div>
           <h3 className="text-base font-bold text-slate-900 dark:text-white line-clamp-1">{name}</h3>
 
-          {/* Rating */}
+         
           <div className="flex items-center gap-1.5 mt-1.5 text-xs">
             <span className="text-amber-500 dark:text-amber-400">★</span>
             <span className="font-bold text-slate-800 dark:text-white">{ratings}</span>
             <span className="text-slate-500 dark:text-[#6B7280]">({reviewsCount} reviews)</span>
           </div>
 
-          {/* Amenities Badges */}
+  
           <div className="flex flex-wrap gap-1.5 mt-3.5">
             {amenities.map((item, idx) => (
               <span
@@ -65,7 +63,7 @@ function HotelCard({ name, index }) {
           </div>
         </div>
 
-        {/* Pricing and Action */}
+
         <div className="mt-5 pt-4 border-t border-slate-100 dark:border-[#1F1F1F] flex items-center justify-between">
           <div>
             <span className="text-[10px] text-slate-500 dark:text-[#6B7280] block uppercase tracking-wide">Per Night</span>

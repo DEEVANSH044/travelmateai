@@ -6,7 +6,6 @@ function Card({ name, state, img, images, rating, weather, budget }) {
 
   return (
     <div className="group w-full max-w-[320px] sm:max-w-none bg-white dark:bg-[#0F0F0F] rounded-2xl overflow-hidden border border-slate-200 dark:border-[#262626] hover:border-slate-300 dark:hover:border-[#383838] hover:bg-slate-50/50 dark:hover:bg-[#151515] transition-all duration-300 flex flex-col shadow-xs hover:shadow-md">
-      {/* Image Section */}
       <div className="relative h-48 w-full overflow-hidden bg-slate-100 dark:bg-[#0A0A0A]">
         <img
           src={imageUrl}
@@ -15,7 +14,7 @@ function Card({ name, state, img, images, rating, weather, budget }) {
           loading="lazy"
         />
 
-        {/* Adaptive subtle rating badge */}
+      
         {rating && (
           <div className="absolute top-3 right-3 bg-white/90 dark:bg-[#050505]/85 backdrop-blur-xs border border-slate-200 dark:border-[#262626] px-2.5 py-1 rounded-lg text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5 shadow-sm">
             <span className="text-amber-500 dark:text-amber-400">★</span>
@@ -23,7 +22,6 @@ function Card({ name, state, img, images, rating, weather, budget }) {
           </div>
         )}
 
-        {/* Adaptive subtle weather badge */}
         {weather && (
           <div className="absolute bottom-3 left-3 bg-slate-900/80 dark:bg-[#050505]/85 backdrop-blur-xs border border-slate-700/50 dark:border-[#262626] px-2.5 py-1 rounded-lg text-[11px] font-semibold text-white dark:text-[#9CA3AF] flex items-center gap-1">
             <span>🌦️</span>
@@ -32,7 +30,6 @@ function Card({ name, state, img, images, rating, weather, budget }) {
         )}
       </div>
 
-      {/* Content Section */}
       <div className="p-5 flex-1 flex flex-col justify-between">
         <div>
           <span className="text-[11px] font-bold text-sky-600 dark:text-sky-400 tracking-wider uppercase">

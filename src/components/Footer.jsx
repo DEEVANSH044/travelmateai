@@ -5,7 +5,7 @@ function Footer() {
     <footer className="bg-slate-100 dark:bg-[#050505] text-slate-600 dark:text-[#9CA3AF] border-t border-slate-200 dark:border-[#1F1F1F] py-14 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 pb-10 border-b border-slate-200 dark:border-[#1F1F1F]">
-          {/* Brand & Slogan */}
+      
           <div>
             <Link to="/home" className="flex items-center gap-2">
               <span className="text-2xl">✈️</span>
@@ -16,7 +16,6 @@ function Footer() {
             </p>
           </div>
 
-          {/* Navigation Links */}
           <nav className="flex flex-wrap items-center gap-6 sm:gap-8 text-xs font-semibold text-slate-600 dark:text-[#9CA3AF]">
             <Link to="/home" className="hover:text-slate-900 dark:hover:text-white transition-colors">
               Home
@@ -36,7 +35,7 @@ function Footer() {
           </nav>
         </div>
 
-        {/* Bottom Bar */}
+
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-8 text-[11px] text-slate-500 dark:text-[#6B7280]">
           <p>© {new Date().getFullYear()} TravelMate AI. All rights reserved.</p>
           <div className="flex items-center gap-4">

@@ -10,17 +10,14 @@ function Destinations() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedState, setSelectedState] = useState("All");
 
-  // Read search query from URL on load/change
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const searchParam = params.get("search") || "";
     setSearchQuery(searchParam);
   }, [location.search]);
 
-  // Unique list of states for filter pills
   const states = ["All", ...new Set(Places.map((p) => p.state))];
 
-  // Filter places based on search query and selected state
   const filteredPlaces = Places.filter((place) => {
     const query = searchQuery.toLowerCase().trim();
     const matchesSearch =
@@ -39,9 +36,7 @@ function Destinations() {
   return (
     <div className="bg-slate-50 dark:bg-[#050505] min-h-screen text-slate-900 dark:text-white flex flex-col transition-colors duration-300">
       <Nav />
-
       <main className="max-w-7xl mx-auto px-6 py-12 flex-1 w-full">
-        {/* Title & Search bar */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div>
             <span className="text-xs font-bold text-sky-600 dark:text-sky-400 tracking-wider uppercase">
@@ -54,8 +49,6 @@ function Destinations() {
               Find your next place to explore across 50 verified Indian destinations.
             </p>
           </div>
-
-          {/* Search Input */}
           <div className="w-full md:w-80 flex items-center bg-white dark:bg-[#0F0F0F] border border-slate-200 dark:border-[#262626] rounded-xl px-3.5 py-2.5 shadow-xs focus-within:border-sky-500/60 transition-colors">
             <span className="text-sky-600 dark:text-sky-400 mr-2.5 text-sm">🔍</span>
             <input
@@ -76,8 +69,6 @@ function Destinations() {
             )}
           </div>
         </div>
-
-        {/* Filters pills */}
         <div className="flex flex-wrap gap-2 mb-8 max-h-36 overflow-y-auto p-1">
           {states.map((state) => (
             <button
@@ -93,13 +84,9 @@ function Destinations() {
             </button>
           ))}
         </div>
-
-        {/* Results count */}
         <p className="text-xs text-slate-500 dark:text-[#6B7280] font-medium mb-6">
           Showing {filteredPlaces.length} of {Places.length} destinations
         </p>
-
-        {/* Destinations Grid */}
         {filteredPlaces.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center sm:justify-items-stretch">
             {filteredPlaces.map((place) => (

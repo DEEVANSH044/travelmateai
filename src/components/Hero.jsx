@@ -21,7 +21,7 @@ function Hero() {
 
   return (
     <section className="relative w-full overflow-hidden min-h-[550px] md:min-h-[650px] flex items-center justify-center border-b border-slate-200 dark:border-[#1F1F1F]">
-      {/* Background Image: Full-width realistic mountain valley image */}
+      
       <div
         className="absolute inset-0 z-0 bg-cover bg-center transition-all duration-300"
         style={{
@@ -30,25 +30,24 @@ function Hero() {
           backgroundPosition: "center"
         }}
       >
-        {/* Subtle Dark Overlay (rgba(0, 0, 0, 0.30)) */}
+  
         <div
           className="absolute inset-0"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.30)" }}
         />
 
-        {/* Bottom subtle gradient blend into page background */}
         <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-50 dark:from-[#050505] to-transparent opacity-90" />
       </div>
 
-      {/* Content over background */}
+
       <div className="relative z-10 max-w-4xl text-center px-6 py-14 md:py-20 flex flex-col items-center">
-        {/* Subtle Badge */}
+       
         <div className="inline-flex items-center gap-2 bg-black/40 hover:bg-black/50 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full text-xs font-semibold text-white mb-6 shadow-lg transition-colors">
           <span className="text-sky-400">✨</span>
           <span>Next-Generation Travel Platform</span>
         </div>
 
-        {/* Headline */}
+      
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-tight md:leading-tight drop-shadow-md">
           Explore India. <br />
           <span className="text-sky-400">Travel Smarter.</span>
@@ -82,7 +81,6 @@ function Hero() {
           </button>
         </form>
 
-        {/* Quick Categories with translucent backdrop blur */}
         <div className="mt-8 sm:mt-10 flex flex-wrap justify-center gap-2.5 sm:gap-3">
           {categories.map((cat) => (
             <button

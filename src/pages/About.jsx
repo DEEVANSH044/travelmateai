@@ -7,7 +7,7 @@ function About() {
       <Nav />
 
       <main className="max-w-4xl mx-auto px-6 py-14 flex-1 w-full">
-        {/* Intro */}
+ 
         <div className="text-center max-w-2xl mx-auto mb-14">
           <span className="text-xs font-bold text-sky-600 dark:text-sky-400 tracking-wider uppercase">
             Who We Are
@@ -20,7 +20,7 @@ function About() {
           </p>
         </div>
 
-        {/* 1. What is TravelMate AI? & Mission Statement */}
+    
         <section className="bg-white dark:bg-[#0F0F0F] rounded-3xl p-8 border border-slate-200 dark:border-[#262626] mb-8 shadow-xs">
           <span className="text-xs font-bold text-sky-600 dark:text-sky-400 tracking-wider uppercase">Our Mission</span>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white mt-1 mb-3">Redefining Indian Travel Planning</h2>
@@ -32,7 +32,7 @@ function About() {
           </p>
         </section>
 
-        {/* 2. Why TravelMate & Technology */}
+    
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
           <div className="bg-white dark:bg-[#0F0F0F] p-6 rounded-2xl border border-slate-200 dark:border-[#262626] shadow-xs">
             <div className="text-xl mb-2 text-sky-600 dark:text-sky-400">⚡</div>
@@ -51,7 +51,7 @@ function About() {
           </div>
         </div>
 
-        {/* 3. Team Grid */}
+  
         <section className="mb-14">
           <div className="text-center mb-8">
             <span className="text-xs font-bold text-sky-600 dark:text-sky-400 tracking-wider uppercase">Leadership</span>

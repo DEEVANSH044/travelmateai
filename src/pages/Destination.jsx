@@ -10,7 +10,6 @@ import Footer from "../components/Footer";
 function Destination() {
   const { name } = useParams();
 
-  // Find the place matching the URL parameter (case-insensitive)
   const place = Places.find(
     (item) => item.name.toLowerCase() === name?.toLowerCase() ||
               item.name.toLowerCase().replace(/\s+/g, "-") === name?.toLowerCase()
@@ -57,7 +56,6 @@ function Destination() {
     <div className="bg-slate-50 dark:bg-[#050505] min-h-screen text-slate-900 dark:text-white flex flex-col transition-colors duration-300">
       <Nav />
 
-      {/* Hero Banner with local hero image */}
       <div className="relative h-[480px] w-full overflow-hidden bg-slate-900">
         <img
           src={place.img || place.images?.[0]}

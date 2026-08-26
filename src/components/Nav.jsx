@@ -31,18 +31,15 @@ function Nav() {
             TravelMate <span className="text-sky-600 dark:text-sky-400">AI</span>
           </span>
         </NavLink>
-
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex gap-7 items-center text-xs font-semibold text-slate-700 dark:text-[#E2E8F0]">
           {navLinks.map((link) => (
             <NavLink
               key={link.to}
               to={link.to}
               className={({ isActive }) =>
-                `relative py-1.5 transition-colors duration-200 hover:text-slate-950 dark:hover:text-white flex items-center gap-1.5 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-sky-600 dark:after:bg-sky-400 after:transition-all after:duration-300 ${
-                  isActive
-                    ? "text-sky-600 dark:text-sky-400 after:w-full font-bold"
-                    : "after:w-0 hover:after:w-full"
+                `relative py-1.5 transition-colors duration-200 hover:text-slate-950 dark:hover:text-white flex items-center gap-1.5 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-sky-600 dark:after:bg-sky-400 after:transition-all after:duration-300 ${isActive
+                  ? "text-sky-600 dark:text-sky-400 after:w-full font-bold"
+                  : "after:w-0 hover:after:w-full"
                 }`
               }
             >
@@ -51,10 +48,8 @@ function Nav() {
             </NavLink>
           ))}
         </nav>
-
-        {/* Desktop Right CTA / Theme Toggle / Auth */}
         <div className="hidden md:flex items-center gap-3">
-          {/* Theme Toggle Button */}
+
           <button
             onClick={toggleTheme}
             className="flex items-center justify-center w-9 h-9 rounded-xl bg-white/80 dark:bg-black/40 hover:bg-white dark:hover:bg-black/60 border border-slate-200/80 dark:border-white/20 text-sm transition-all duration-200 cursor-pointer shadow-xs backdrop-blur-md"
@@ -122,8 +117,6 @@ function Nav() {
           </button>
         </div>
       </div>
-
-      {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-white/95 dark:bg-[#0A0A0A]/95 backdrop-blur-md border-b border-slate-200 dark:border-[#1F1F1F] px-6 py-4 space-y-3 animate-fade-in transition-colors duration-300">
           {navLinks.map((link) => (
@@ -132,10 +125,9 @@ function Nav() {
               to={link.to}
               onClick={() => setMobileMenuOpen(false)}
               className={({ isActive }) =>
-                `flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold transition-colors ${
-                  isActive
-                    ? "bg-sky-50 text-sky-600 border border-sky-200 dark:bg-sky-500/10 dark:text-sky-400 dark:border-sky-500/30"
-                    : "text-slate-700 hover:text-slate-950 hover:bg-slate-100 dark:text-[#9CA3AF] dark:hover:text-white dark:hover:bg-[#151515]"
+                `flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold transition-colors ${isActive
+                  ? "bg-sky-50 text-sky-600 border border-sky-200 dark:bg-sky-500/10 dark:text-sky-400 dark:border-sky-500/30"
+                  : "text-slate-700 hover:text-slate-950 hover:bg-slate-100 dark:text-[#9CA3AF] dark:hover:text-white dark:hover:bg-[#151515]"
                 }`
               }
             >

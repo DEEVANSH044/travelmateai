@@ -80,16 +80,16 @@ function Login() {
             {/* Highlights */}
             <div className="mt-8 pt-6 border-t border-white/15 relative z-10 space-y-2.5 text-xs text-white/80">
               <div className="flex items-center gap-2">
-                <span className="text-sky-400 font-bold">✓</span>
-                <span>50+ Handpicked Indian destinations</span>
+                {/* <span className="text-sky-400 font-bold">✓</span> */}
+                {/* <span>50+ Handpicked Indian destinations</span> */}
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-sky-400 font-bold">✓</span>
-                <span>Personalized multi-day itinerary builder</span>
+                {/* <span className="text-sky-400 font-bold">✓</span> */}
+                {/* <span>Personalized multi-day itinerary builder</span> */}
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-sky-400 font-bold">✓</span>
-                <span>Budget forecasts & Travel DNA profiling</span>
+                {/* <span className="text-sky-400 font-bold">✓</span> */}
+                {/* <span>Budget forecasts & Travel DNA profiling</span> */}
               </div>
             </div>
           </div>

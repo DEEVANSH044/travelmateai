@@ -6,7 +6,7 @@ function ReviewCard({ author, rating, date, comment, tag }) {
   return (
     <div className="bg-white dark:bg-[#0F0F0F] rounded-2xl p-5 border border-slate-200 dark:border-[#262626] hover:border-slate-300 dark:hover:border-[#383838] hover:bg-slate-50/50 dark:hover:bg-[#151515] transition-all duration-200 flex flex-col justify-between shadow-xs">
       <div>
-        {/* Header */}
+        
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-full bg-slate-100 dark:bg-[#141414] border border-slate-200 dark:border-[#262626] flex items-center justify-center text-sky-600 dark:text-sky-400 text-xs font-bold shadow-xs">
             {initials}
@@ -16,8 +16,6 @@ function ReviewCard({ author, rating, date, comment, tag }) {
             <span className="text-[10px] text-slate-500 dark:text-[#6B7280] block">{date}</span>
           </div>
         </div>
-
-        {/* Rating and Tag */}
         <div className="flex items-center gap-2 mt-3">
           <div className="flex text-amber-500 dark:text-amber-400 text-xs gap-0.5">
             {Array.from({ length: 5 }).map((_, i) => (
@@ -30,8 +28,6 @@ function ReviewCard({ author, rating, date, comment, tag }) {
             </span>
           )}
         </div>
-
-        {/* Comment */}
         <p className="text-xs text-slate-600 dark:text-[#9CA3AF] mt-3 leading-relaxed italic">
           "{comment}"
         </p>

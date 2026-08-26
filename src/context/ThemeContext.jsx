@@ -10,9 +10,8 @@ export function ThemeProvider({ children }) {
         return savedTheme;
       }
     } catch {
-      // ignore localStorage errors in sandboxed environments
     }
-    return "dark"; // Dark mode is default
+    return "dark";
   });
 
   useEffect(() => {
@@ -32,7 +31,6 @@ export function ThemeProvider({ children }) {
     try {
       localStorage.setItem("travelmate_theme", theme);
     } catch {
-      // ignore localStorage error
     }
   }, [theme]);
 
