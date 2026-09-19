@@ -9,19 +9,42 @@ function Login() {
   const navigate = useNavigate();
   const { isDark, toggleTheme } = useTheme();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    setError("");
-
-    if (!email.trim() || !password.trim()) {
-      setError("Please fill in both email and password.");
+const handleLogin = async (e) => {
+  e.preventDefault();
+  setError("");
+  if (!email.trim() || !password.trim()) {
+    setError("Please fill in both email and password.");
+    return;
+  }
+  try {
+    const response = await fetch(
+      "http://localhost:5005/api/auth/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      }
+    );
+    const data = await response.json();
+    console.log("Login response:", data);
+    if (!response.ok) {
+      setError(data.message || "Login failed.");
       return;
     }
-
-    // Temporary frontend authentication
-    localStorage.setItem("isLoggedIn", "true");
+   localStorage.setItem("isLoggedIn", "true");
+localStorage.setItem("token", data.token);
+localStorage.setItem("user", JSON.stringify(data.user));
     navigate("/home");
-  };
+  } catch (error) {
+    console.error("Login error:", error);
+    setError("Unable to connect to the server.");
+  }
+};
 
   const handleDemoLogin = () => {
     setEmail("demo@travelmate.ai");

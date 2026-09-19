@@ -254,3 +254,13 @@ TravelMate AI
 └── Responsive Design
 
 Note: TravelMate AI is currently a frontend-stage project. Some features such as AI itinerary generation, authentication persistence, live weather and maps are planned for the backend/integration phase.
+
+
+
+
+deevanshrana11_db_user
+
+SwXhU5Y4GYGq6toV
+
+
+mongodb+srv://deevanshrana11_db_user:SwXhU5Y4GYGq6toV@cluster0.nvbqy8t.mongodb.net/?appName=Cluster0

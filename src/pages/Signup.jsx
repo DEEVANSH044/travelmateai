@@ -11,30 +11,63 @@ function Signup() {
   const navigate = useNavigate();
   const { isDark, toggleTheme } = useTheme();
 
-  const handleSignup = (e) => {
-    e.preventDefault();
-    setError("");
+const handleSignup = async (e) => {
+  e.preventDefault();
+  setError("");
 
-    if (!fullName.trim() || !email.trim() || !password.trim() || !confirmPassword.trim()) {
-      setError("Please fill in all fields.");
+  if (
+    !fullName.trim() ||
+    !email.trim() ||
+    !password.trim() ||
+    !confirmPassword.trim()
+  ) {
+    setError("Please fill in all fields.");
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    setError("Passwords do not match. Please check and try again.");
+    return;
+  }
+
+  if (password.length < 6) {
+    setError("Password must be at least 6 characters long.");
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      "http://localhost:5005/api/auth/signup",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: fullName,
+          email,
+          password,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      setError(data.message || "Signup failed.");
       return;
     }
 
-    if (password !== confirmPassword) {
-      setError("Passwords do not match. Please check and try again.");
-      return;
-    }
-
-    if (password.length < 6) {
-      setError("Password must be at least 6 characters long.");
-      return;
-    }
-
-    // Temporary frontend authentication
     localStorage.setItem("isLoggedIn", "true");
-    navigate("/home");
-  };
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.user));
 
+    navigate("/home");
+  } catch (error) {
+    console.error("Signup error:", error);
+    setError("Unable to connect to the server.");
+  }
+};
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#050505] flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 text-slate-900 dark:text-white transition-colors duration-300 relative">
       {/* Top right theme toggle */}

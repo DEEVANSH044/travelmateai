@@ -1,56 +1,134 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import Places from "../data/Places";
 import Card from "../components/Card";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 
 function Destinations() {
   const location = useLocation();
+
+  const [places, setPlaces] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedState, setSelectedState] = useState("All");
+  const [loading, setLoading] = useState(true);
 
+  // Fetch destinations from backend
+  useEffect(() => {
+    const fetchDestinations = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:5005/api/destinations"
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch destinations");
+        }
+
+        const data = await response.json();
+
+        setPlaces(data);
+      } catch (error) {
+        console.error("Error fetching destinations:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDestinations();
+  }, []);
+
+  // Read search query from URL
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const searchParam = params.get("search") || "";
+
     setSearchQuery(searchParam);
   }, [location.search]);
 
-  const states = ["All", ...new Set(Places.map((p) => p.state))];
+  // Create state list dynamically
+  const states = [
+    "All",
+    ...new Set(places.map((place) => place.state)),
+  ];
 
-  const filteredPlaces = Places.filter((place) => {
+  // Filter destinations
+  const filteredPlaces = places.filter((place) => {
     const query = searchQuery.toLowerCase().trim();
+
     const matchesSearch =
       !query ||
-      place.name.toLowerCase().includes(query) ||
-      place.state.toLowerCase().includes(query) ||
-      place.description.toLowerCase().includes(query) ||
-      place.attractions?.some(a => a.toLowerCase().includes(query)) ||
-      place.food?.some(f => f.toLowerCase().includes(query));
+      place.name?.toLowerCase().includes(query) ||
+      place.state?.toLowerCase().includes(query) ||
+      place.description?.toLowerCase().includes(query) ||
+      place.attractions?.some((attraction) =>
+        attraction.toLowerCase().includes(query)
+      ) ||
+      place.food?.some((food) =>
+        food.toLowerCase().includes(query)
+      );
 
-    const matchesState = selectedState === "All" || place.state === selectedState;
+    const matchesState =
+      selectedState === "All" ||
+      place.state === selectedState;
 
     return matchesSearch && matchesState;
   });
 
+  // Loading screen
+  if (loading) {
+    return (
+      <div className="bg-slate-50 dark:bg-[#050505] min-h-screen text-slate-900 dark:text-white flex flex-col transition-colors duration-300">
+        <Nav />
+
+        <main className="flex-1 flex items-center justify-center">
+          <div className="text-center">
+            <div className="text-4xl mb-4">🌍</div>
+
+            <h2 className="text-lg font-bold">
+              Loading destinations...
+            </h2>
+
+            <p className="text-xs text-slate-500 dark:text-[#6B7280] mt-2">
+              Fetching destinations from TravelMate AI server
+            </p>
+          </div>
+        </main>
+
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div className="bg-slate-50 dark:bg-[#050505] min-h-screen text-slate-900 dark:text-white flex flex-col transition-colors duration-300">
       <Nav />
+
       <main className="max-w-7xl mx-auto px-6 py-12 flex-1 w-full">
+
+        {/* Header + Search */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+
           <div>
             <span className="text-xs font-bold text-sky-600 dark:text-sky-400 tracking-wider uppercase">
               Curated All-India Catalog
             </span>
+
             <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-1">
               Explore Destinations
             </h1>
+
             <p className="text-slate-600 dark:text-[#9CA3AF] mt-2 text-xs sm:text-sm">
               Find your next place to explore across 50 verified Indian destinations.
             </p>
           </div>
+
+          {/* Search */}
           <div className="w-full md:w-80 flex items-center bg-white dark:bg-[#0F0F0F] border border-slate-200 dark:border-[#262626] rounded-xl px-3.5 py-2.5 shadow-xs focus-within:border-sky-500/60 transition-colors">
-            <span className="text-sky-600 dark:text-sky-400 mr-2.5 text-sm">🔍</span>
+
+            <span className="text-sky-600 dark:text-sky-400 mr-2.5 text-sm">
+              🔍
+            </span>
+
             <input
               type="text"
               value={searchQuery}
@@ -58,6 +136,7 @@ function Destinations() {
               placeholder="Search city, food, attraction..."
               className="w-full bg-transparent outline-none text-xs sm:text-sm font-medium text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-[#6B7280]"
             />
+
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
@@ -69,7 +148,10 @@ function Destinations() {
             )}
           </div>
         </div>
+
+        {/* State Filters */}
         <div className="flex flex-wrap gap-2 mb-8 max-h-36 overflow-y-auto p-1">
+
           {states.map((state) => (
             <button
               key={state}
@@ -83,12 +165,19 @@ function Destinations() {
               {state}
             </button>
           ))}
+
         </div>
+
+        {/* Result Count */}
         <p className="text-xs text-slate-500 dark:text-[#6B7280] font-medium mb-6">
-          Showing {filteredPlaces.length} of {Places.length} destinations
+          Showing {filteredPlaces.length} of {places.length} destinations
         </p>
+
+        {/* Destination Cards */}
         {filteredPlaces.length > 0 ? (
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center sm:justify-items-stretch">
+
             {filteredPlaces.map((place) => (
               <Card
                 key={place.id}
@@ -101,14 +190,26 @@ function Destinations() {
                 budget={place.budget}
               />
             ))}
+
           </div>
+
         ) : (
+
+          /* No Results */
           <div className="text-center py-20 bg-white dark:bg-[#0F0F0F] rounded-3xl border border-slate-200 dark:border-[#262626] p-8 max-w-lg mx-auto mt-6 shadow-xs">
-            <span className="text-4xl">🏝️</span>
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white mt-4">No destinations found</h3>
+
+            <span className="text-4xl">
+              🏝️
+            </span>
+
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mt-4">
+              No destinations found
+            </h3>
+
             <p className="text-slate-600 dark:text-[#9CA3AF] text-xs mt-2 leading-relaxed">
               We couldn't find any destinations matching "{searchQuery}" in state "{selectedState}". Try adjusting your filters.
             </p>
+
             <button
               onClick={() => {
                 setSearchQuery("");
@@ -118,8 +219,10 @@ function Destinations() {
             >
               Clear Filters
             </button>
+
           </div>
         )}
+
       </main>
 
       <Footer />
